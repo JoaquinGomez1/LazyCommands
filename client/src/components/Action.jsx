@@ -14,7 +14,7 @@ export default function Action(props) {
       props.text.toLowerCase() === "apagar" ||
       props.text.toLowerCase() === "cerrar sesión"
     ) {
-      // TODO : Create modal
+      // Send signal to parent component
       props.openModal(props.text);
     } else {
       sendToBackend();
@@ -26,7 +26,8 @@ export default function Action(props) {
     const headers = new Headers({
       "Content-Type": "application/json",
     });
-    const req = await fetch("http://192.168.0.8:6653/", {
+
+    fetch("http://192.168.0.8:6653/", {
       method: "POST",
       body: JSON.stringify({ text: props.text }),
       headers,
@@ -41,6 +42,7 @@ export default function Action(props) {
         style={{
           backgroundColor: bgColor,
           color: "white",
+          width: "100%",
         }}
         onClick={verifyAction}
       >

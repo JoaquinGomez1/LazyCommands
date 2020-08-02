@@ -49,91 +49,93 @@ function App() {
         direction="column"
         alignItems="center"
         style={{
-          height: "100%",
           textAlign: "center",
           color: "white",
+          width: "100vw",
         }}
       >
-        <h1>
-          Panel de Control <br></br>
-          <hr></hr>
-        </h1>
-        <Grid
-          container
-          direction="column"
-          justify="center"
-          alignItems="center"
-          spacing={2}
-        >
-          {actions.map((each) => (
-            <Grid item>
-              <Action
-                key={each.name}
-                text={each.name}
-                color={each.color}
-                bgColor={each.colorHex}
-                openModal={openModal}
-              ></Action>
-            </Grid>
-          ))}
-
-          <Modal
-            open={open}
-            onClose={closeModal}
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-            style={{ display: "grid", justifyContent: "center" }}
+        <Grid container justify="center" style={{ width: "90%" }}>
+          <h1>
+            Lazy CMD <br></br>
+            <hr></hr>
+          </h1>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+            spacing={2}
+            style={{ width: "100%" }}
           >
-            <Grid
-              container
-              display="column"
-              style={{
-                backgroundColor: "#eee",
-                zIndex: "2",
-              }}
-              alignItems="center"
-              justify="center"
+            {actions.map((each) => (
+              <Grid item style={{ width: "100%" }}>
+                <Action
+                  key={each.name}
+                  text={each.name}
+                  color={each.color}
+                  bgColor={each.colorHex}
+                  openModal={openModal}
+                ></Action>
+              </Grid>
+            ))}
+
+            <Modal
+              open={open}
+              onClose={closeModal}
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description"
+              style={{ display: "grid", justifyContent: "center" }}
             >
-              <h3>Seguro?</h3>
-              <Grid container display="row" justify="center" spacing={2}>
-                <Grid item>
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    size="large"
-                    onClick={() => closeModal()}
-                  >
-                    No
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    size="large"
-                    onClick={() => sendShutdownRequest()}
-                  >
-                    Sí
-                  </Button>
+              <Grid
+                container
+                display="column"
+                style={{
+                  backgroundColor: "#eee",
+                  zIndex: "2",
+                }}
+                alignItems="center"
+                justify="center"
+              >
+                <h3>Seguro?</h3>
+                <Grid container display="row" justify="center" spacing={2}>
+                  <Grid item>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      onClick={() => closeModal()}
+                    >
+                      No
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      size="large"
+                      onClick={() => sendShutdownRequest()}
+                    >
+                      Sí
+                    </Button>
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
-          </Modal>
-        </Grid>
-        <h3>
-          {" "}
-          Volumen
-          <br></br>
-          <hr></hr>
-        </h3>
-        <Grid container direction="row" justify="center" spacing={2}>
-          <Grid item>
-            <Action key={"-"} text="-" bgColor="#1e54f7">
-              {" "}
-            </Action>
+            </Modal>
           </Grid>
-          <Grid item>
-            <Action key={"+"} text="+" bgColor="#f7711e"></Action>
+          <h3>
+            {" "}
+            Volumen
+            <br></br>
+            <hr></hr>
+          </h3>
+          <Grid container direction="row" justify="center" spacing={2}>
+            <Grid item style={{ width: "50%" }}>
+              <Action key={"-"} text="-" bgColor="#1e54f7">
+                {" "}
+              </Action>
+            </Grid>
+            <Grid item style={{ width: "50%" }}>
+              <Action key={"+"} text="+" bgColor="#f7711e"></Action>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

@@ -14,7 +14,12 @@ app.use(
 );
 app.use(bodyParser.json());
 
+app.use(express.static("client/build"));
 // -------------- ROUTES ---------------
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
+
 app.use(require("./routes/index.js"));
 
 // ------------- LISTEN TO SERVER ----------
