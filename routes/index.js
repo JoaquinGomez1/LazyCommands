@@ -1,13 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const { exec } = require("child_process");
-const path = require("path");
 
 router.post("/", (req, res) => {
   let { text } = req.body;
   text = text.toLowerCase();
-
   console.log(text);
+
   switch (text) {
     case "+":
       exec("nircmd.exe changesysvolume 5000");

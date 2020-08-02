@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Grid, Modal, Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Action from "./components/Action";
+import ModalContent from "./components/MyModal.jsx";
+import VolumeControls from "./components/VolumeControls.jsx";
 
 function App() {
   const actions = [
@@ -18,29 +20,12 @@ function App() {
   const [sendValue, setSendValue] = useState();
 
   const openModal = (text) => {
-    console.log(text);
     setOpen(true);
     setSendValue(text);
   };
 
   const closeModal = () => {
     setOpen(false);
-  };
-
-  const sendShutdownRequest = async () => {
-    console.log(sendValue);
-    const headers = new Headers({
-      "Content-Type": "application/json",
-    });
-    const req = await fetch("http://192.168.0.8:6653/", {
-      method: "POST",
-      body: JSON.stringify({ text: sendValue }),
-      headers,
-    });
-
-    if (req.status) {
-      closeModal();
-    }
   };
 
   return (
@@ -80,47 +65,11 @@ function App() {
               </Grid>
             ))}
 
-            <Modal
-              open={open}
-              onClose={closeModal}
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-              style={{ display: "grid", justifyContent: "center" }}
-            >
-              <Grid
-                container
-                display="column"
-                style={{
-                  backgroundColor: "#eee",
-                  zIndex: "2",
-                }}
-                alignItems="center"
-                justify="center"
-              >
-                <h3>Seguro?</h3>
-                <Grid container display="row" justify="center" spacing={2}>
-                  <Grid item>
-                    <Button
-                      variant="outlined"
-                      color="primary"
-                      onClick={() => closeModal()}
-                    >
-                      No
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      size="large"
-                      onClick={() => sendShutdownRequest()}
-                    >
-                      Sí
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Modal>
+            <ModalContent
+              toggleModal={open}
+              sendValue={sendValue}
+              onChangeOpenState={closeModal}
+            ></ModalContent>
           </Grid>
           <h3 style={{ color: "#fff1e6" }}>
             {" "}
@@ -128,16 +77,7 @@ function App() {
             <br></br>
             <hr></hr>
           </h3>
-          <Grid container direction="row" justify="center" spacing={2}>
-            <Grid item style={{ width: "50%" }}>
-              <Action key={"-"} text="-" bgColor="#f48c06">
-                {" "}
-              </Action>
-            </Grid>
-            <Grid item style={{ width: "50%" }}>
-              <Action key={"+"} text="+" bgColor="#e85d04"></Action>
-            </Grid>
-          </Grid>
+          <VolumeControls></VolumeControls>
         </Grid>
       </Grid>
     </div>

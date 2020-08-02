@@ -1,10 +1,13 @@
 import React from "react";
 import { Button, Grid } from "@material-ui/core";
+
+// Icons Imports
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import DesktopAccessDisabledIcon from "@material-ui/icons/DesktopAccessDisabled";
 import VolumeOffIcon from "@material-ui/icons/VolumeOff";
 import VolumeUpIcon from "@material-ui/icons/VolumeUp";
 
+// ------ Component -------
 export default function Action(props) {
   const { bgColor, text, color } = props;
   const pStyle = { fontWeight: "bold", textAlign: "center", fontSize: "28px" };
@@ -23,15 +26,12 @@ export default function Action(props) {
     width: "100%",
   };
 
-  if (color) btnStyle.color = props.color;
+  if (color) btnStyle.color = color;
 
   const verifyAction = async () => {
-    if (
-      props.text.toLowerCase() === "apagar" ||
-      props.text.toLowerCase() === "cerrar sesión"
-    ) {
+    if (textValue === "apagar" || textValue === "cerrar sesión") {
       // Send signal to parent component
-      props.openModal(props.text);
+      props.openModal(textValue);
     } else {
       sendToBackend();
     }
@@ -77,7 +77,7 @@ export default function Action(props) {
             </Grid>
           ) : (
             <Grid item justify="center">
-              <p style={pStyle}>{props.text}</p>
+              <p style={pStyle}>{text}</p>
             </Grid>
           )}
         </Grid>
