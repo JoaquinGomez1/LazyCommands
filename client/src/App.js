@@ -4,13 +4,14 @@ import Action from "./components/Action";
 
 function App() {
   const actions = [
-    { name: "Apagar", color: "secondary" },
+    { name: "Apagar", colorHex: "#e63946" },
     {
       name: "Cerrar Sesión",
-      color: "primary",
+      color: "black",
+      colorHex: "#f1faee",
     },
-    { name: "Mutear", colorHex: "#0ad192" },
-    { name: "Desmutear", colorHex: "#18c44b" },
+    { name: "Mutear", colorHex: "#f1faee", color: "black" },
+    { name: "Desmutear", colorHex: "#f1faee", color: "black" },
   ];
 
   const [open, setOpen] = useState(false);
@@ -55,7 +56,7 @@ function App() {
         }}
       >
         <Grid container justify="center" style={{ width: "90%" }}>
-          <h1>
+          <h1 style={{ color: "#fff1e6" }}>
             Lazy CMD <br></br>
             <hr></hr>
           </h1>
@@ -121,7 +122,7 @@ function App() {
               </Grid>
             </Modal>
           </Grid>
-          <h3>
+          <h3 style={{ color: "#fff1e6" }}>
             {" "}
             Volumen
             <br></br>
@@ -129,12 +130,12 @@ function App() {
           </h3>
           <Grid container direction="row" justify="center" spacing={2}>
             <Grid item style={{ width: "50%" }}>
-              <Action key={"-"} text="-" bgColor="#1e54f7">
+              <Action key={"-"} text="-" bgColor="#f48c06">
                 {" "}
               </Action>
             </Grid>
             <Grid item style={{ width: "50%" }}>
-              <Action key={"+"} text="+" bgColor="#f7711e"></Action>
+              <Action key={"+"} text="+" bgColor="#e85d04"></Action>
             </Grid>
           </Grid>
         </Grid>

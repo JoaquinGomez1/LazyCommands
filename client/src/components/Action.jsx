@@ -1,13 +1,29 @@
 import React from "react";
 import { Button, Grid } from "@material-ui/core";
+import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
+import DesktopAccessDisabledIcon from "@material-ui/icons/DesktopAccessDisabled";
+import VolumeOffIcon from "@material-ui/icons/VolumeOff";
+import VolumeUpIcon from "@material-ui/icons/VolumeUp";
 
 export default function Action(props) {
-  const bgColor = props.bgColor;
+  const { bgColor, text, color } = props;
+  const pStyle = { fontWeight: "bold", textAlign: "center", fontSize: "28px" };
+  const textValue = text.toLowerCase();
 
-  let pStyle = { fontWeight: "bold", textAlign: "center" };
-  if (props.text === "+" || props.text === "-") {
-    pStyle = { fontWeight: "bold", textAlign: "center", fontSize: "28px" };
-  }
+  const iconsList = {
+    apagar: <PowerSettingsNewIcon />,
+    "cerrar sesión": <DesktopAccessDisabledIcon />,
+    mutear: <VolumeOffIcon />,
+    desmutear: <VolumeUpIcon />,
+  };
+
+  const btnStyle = {
+    backgroundColor: bgColor,
+    color: "white",
+    width: "100%",
+  };
+
+  if (color) btnStyle.color = props.color;
 
   const verifyAction = async () => {
     if (
@@ -39,15 +55,31 @@ export default function Action(props) {
       <Button
         variant="contained"
         color={props.color}
-        style={{
-          backgroundColor: bgColor,
-          color: "white",
-          width: "100%",
-        }}
+        style={btnStyle}
         onClick={verifyAction}
       >
-        <Grid container direction="row" justify="center" alignItems="center">
-          <p style={pStyle}>{props.text}</p>
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          spacing={2}
+        >
+          {/* If there is no icon defined print text value instead*/}
+          {iconsList[textValue] ? (
+            <Grid
+              item
+              justify="center"
+              alignItems="center"
+              style={{ padding: "20px 0px" }}
+            >
+              {iconsList[textValue]}
+            </Grid>
+          ) : (
+            <Grid item justify="center">
+              <p style={pStyle}>{props.text}</p>
+            </Grid>
+          )}
         </Grid>
       </Button>
     </React.Fragment>
