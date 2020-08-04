@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import { Grid } from "@material-ui/core";
 import Action from "./components/Action";
-import ModalContent from "./components/MyModal.jsx";
+import MyModal from "./components/MyModal/MyModal.jsx";
 import VolumeControls from "./components/VolumeControls.jsx";
 
 function App() {
   const actions = [
     { name: "Apagar", colorHex: "#e63946" },
-    {
-      name: "Cerrar Sesión",
-      color: "black",
-      colorHex: "#f1faee",
-    },
+    { name: "Cerrar Sesión", color: "black", colorHex: "#f1faee" },
     { name: "Mutear", colorHex: "#f1faee", color: "black" },
     { name: "Desmutear", colorHex: "#f1faee", color: "black" },
   ];
@@ -65,11 +61,11 @@ function App() {
               </Grid>
             ))}
 
-            <ModalContent
+            <MyModal
               toggleModal={open}
               sendValue={sendValue}
               onChangeOpenState={closeModal}
-            ></ModalContent>
+            ></MyModal>
           </Grid>
           <h3 style={{ color: "#fff1e6" }}>
             {" "}

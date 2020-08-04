@@ -67,16 +67,11 @@ export default function Action(props) {
         >
           {/* If there is no icon defined print text value instead*/}
           {iconsList[textValue] ? (
-            <Grid
-              item
-              justify="center"
-              alignItems="center"
-              style={{ padding: "20px 0px" }}
-            >
+            <Grid item style={{ padding: "20px 0px" }}>
               {iconsList[textValue]}
             </Grid>
           ) : (
-            <Grid item justify="center">
+            <Grid item>
               <p style={pStyle}>{text}</p>
             </Grid>
           )}

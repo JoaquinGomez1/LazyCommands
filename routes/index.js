@@ -3,9 +3,15 @@ const router = express.Router();
 const { exec } = require("child_process");
 
 router.post("/", (req, res) => {
-  let { text } = req.body;
+  let { text, time } = req.body;
+
+  if (isNaN(time)) time = undefined;
+  if (time == 0) time = undefined;
+  if (time) time = time * 60;
+  if (time == undefined) time = "";
   text = text.toLowerCase();
-  console.log(text);
+
+  console.log(text, time);
 
   switch (text) {
     case "+":
@@ -25,11 +31,13 @@ router.post("/", (req, res) => {
       break;
 
     case "cerrar sesión":
-      exec("shutdown /l");
+      // Cerrar sesión no acepta parámetros de tiempo.
+      exec("shutdown /L");
       break;
 
     case "apagar":
-      exec("shutdown /s");
+      if (time) exec(`shutdown /s /t ${time}`);
+      else exec("shutdown /s");
       break;
 
     default:

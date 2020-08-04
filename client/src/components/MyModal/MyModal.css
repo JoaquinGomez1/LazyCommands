@@ -1,0 +1,5 @@
+.waitTimeInput::placeholder {
+  color: white;
+  opacity: 0.85;
+  text-align: center;
+}
