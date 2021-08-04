@@ -6,6 +6,7 @@ import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import DesktopAccessDisabledIcon from "@material-ui/icons/DesktopAccessDisabled";
 import VolumeOffIcon from "@material-ui/icons/VolumeOff";
 import VolumeUpIcon from "@material-ui/icons/VolumeUp";
+import config from "../../config";
 
 // ------ Component -------
 export default function Action(props) {
@@ -43,7 +44,7 @@ export default function Action(props) {
       "Content-Type": "application/json",
     });
 
-    fetch("http://192.168.0.11:6653/", {
+    fetch(config.ipv4, {
       method: "POST",
       body: JSON.stringify({ text: props.text }),
       headers,
