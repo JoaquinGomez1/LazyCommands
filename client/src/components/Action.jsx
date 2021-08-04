@@ -43,7 +43,7 @@ export default function Action(props) {
       "Content-Type": "application/json",
     });
 
-    fetch("http://192.168.0.8:6653/", {
+    fetch("http://192.168.0.11:6653/", {
       method: "POST",
       body: JSON.stringify({ text: props.text }),
       headers,
